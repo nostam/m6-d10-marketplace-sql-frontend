@@ -40,6 +40,8 @@ class Home extends React.Component {
     products: [],
     newPost: [],
   };
+  url = "http://localhost:3001/";
+  cartID = "5f6b1991df85440017160811";
   // handleDropdownCategory = category => {
   //   this.setState({
   //     products: products[category].slice(0, 6),
@@ -101,7 +103,7 @@ class Home extends React.Component {
 
   handleReviews = async () => {
     try {
-      const response = await fetch("http://localhost:3001/reviews");
+      const response = await fetch(this.url + "reviews");
       if (response.ok) {
         const products = await response.json();
 
@@ -113,9 +115,22 @@ class Home extends React.Component {
       console.log(err);
     }
   };
-
+  handleCarts = async () => {
+    try {
+      const response = await fetch(this.url + "carts/" + this.cartID);
+      if (response.ok) {
+        const cart = await response.json();
+        this.setState({ cart: cart });
+      } else {
+        console.log("hei");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   componentDidMount = () => {
     this.handleProducts();
+    this.handleCarts();
   };
 
   render() {
@@ -132,7 +147,7 @@ class Home extends React.Component {
               className="mb-3"
               title={this.state.selectedCategory}
             >
-              {this.state.products.map(product => {
+              {this.state.products.map((product) => {
                 return (
                   <Dropdown.Item
                     href="#/action-1"
@@ -146,7 +161,7 @@ class Home extends React.Component {
               placeholder="Search Products by Title"
               aria-label="Search"
               aria-describedby="basic-addon1"
-              onKeyUp={e => this.handleSearchQuery(e.target.value)}
+              onKeyUp={(e) => this.handleSearchQuery(e.target.value)}
             />
           </InputGroup>
           <Row>
