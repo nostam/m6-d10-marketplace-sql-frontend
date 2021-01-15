@@ -83,7 +83,7 @@ export default class BackOffice extends Component {
           <Container className="my-5">
             <ProductsTable
               products={products}
-              refetch={this.handleProducts()}
+              refetch={this.handleProducts}
               handleAlert={this.handleAlert}
             />
             {Object.keys(links) !== 0 && (

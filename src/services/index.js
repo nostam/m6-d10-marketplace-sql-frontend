@@ -12,7 +12,6 @@ export default {
         const { errors } = await res.json();
         throw new Error(errors);
       }
-      console.log(res);
       const data = await res.json();
       callback(data);
     } catch (error) {
