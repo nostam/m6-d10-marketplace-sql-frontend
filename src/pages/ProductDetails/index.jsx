@@ -8,7 +8,8 @@ export default class ProductDetails extends Component {
   getSingleProduct = async () => {
     try {
       const res = await fetch(
-        `${this.url}/products/${this.props.match.params.id}`
+        `${this.url}/products/${this.props.match.params.id}`,
+        { method: "GET", headers: { origin: process.env.ORIGIN } }
       );
       if (!res.ok) throw new Error(res);
       const data = res.json();

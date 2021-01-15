@@ -14,7 +14,7 @@ const routes = [
   { path: "/register", component: Registration },
   { path: "/backoffice", component: BackOffice },
   // { path: "/new-product", component: NewProduct },
-  // { path: "/product/:id", component: ProductDetails },
+  { path: "/products/:id", component: ProductDetails },
   // { path: "/search", component: Search },
 ];
 class App extends React.Component {
