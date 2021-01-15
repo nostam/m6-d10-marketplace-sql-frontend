@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Container, Table } from "react-bootstrap";
-import ModalForm from "./ModalForm";
+// import ModalForm from "./ModalForm";
 
 const url = "http://localhost:3001";
 

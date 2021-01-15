@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Row, Container } from "react-bootstrap";
-import SingleProduct from "./SingleProduct";
+import SingleProduct from "../../components/SingleProduct";
 
-class shelf extends React.PureComponent {
+class RandomShelf extends React.PureComponent {
   render() {
     return (
       <Container fluid>
@@ -18,4 +18,4 @@ class shelf extends React.PureComponent {
   }
 }
 
-export default shelf;
+export default RandomShelf;

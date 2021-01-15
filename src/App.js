@@ -1,36 +1,43 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Home from "./components/Home";
-import MyNavBar from "./components/MyNavBar";
-import Registration from "./components/Registration";
+import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
+import Registration from "./pages/Registration";
+import BackOffice from "./pages/BackOffice";
+import NewProduct from "./pages/NewProduct";
+import ProductDetails from "./pages/ProductDetails";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+const routes = [
+  { path: "/", component: Home },
+  { path: "/register", component: Registration },
+  { path: "/backoffice", component: BackOffice },
+  // { path: "/new-product", component: NewProduct },
+  // { path: "/product/:id", component: ProductDetails },
+  // { path: "/search", component: Search },
+];
 class App extends React.Component {
-  state = { books: [] };
-  componentDidMount = async () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const response = await fetch(`${apiUrl}/books`);
-    const jsonBooks = await response.json();
-    console.log(jsonBooks);
-
-    this.setState({
-      books: jsonBooks,
-    });
+  state = { searchQuery: "", searchCategory: "" };
+  handleSearch = (e) => {
+    e.preventDefault();
+    this.setState({ searchQuery: e.target.value });
   };
   render() {
     return (
       <Router>
-        <MyNavBar title="M5 Book store!" />
-        {/* <Route exact path="/" component={Home} />
-        <Route exact path="/register" component={Registration} /> */}
-        {this.state.books &&
-          this.state.books.map((book, index) => (
-            <div key={index}>
-              <img src={book.img} style={{ width: "200px" }} alt=""></img>
-              <span>{book.title}</span>
-            </div>
-          ))}
+        <NavBar
+          title="M6 marketplace"
+          handleSearch={(e) => this.handleSearch(e)}
+        />
+        {routes.map(({ path, component }, index) => (
+          <Route
+            exact
+            path={path}
+            component={component}
+            key={`route${index}`}
+          />
+        ))}
       </Router>
     );
   }
