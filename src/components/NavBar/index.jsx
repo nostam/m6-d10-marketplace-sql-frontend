@@ -29,18 +29,16 @@ const NavBar = (props) => {
         <Nav>
           <Form inline>
             <FormControl
-              controlId="navSearchBar"
+              id="navSearchBar"
               type="text"
               placeholder="Search"
               className="mr-sm-2"
             />
             <Button variant="outline-primary">Search</Button>
           </Form>
-          <Link to="/register">
-            <Nav.Link className="text-white ml-2" href="/register">
-              <FaUsersCog size="2rem" />
-            </Nav.Link>
-          </Link>
+          <Nav.Link className="text-white ml-2" href="/register">
+            <FaUsersCog size="32" />
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

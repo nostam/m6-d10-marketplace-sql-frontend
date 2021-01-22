@@ -29,16 +29,17 @@ class Home extends React.Component {
     services.getProducts((res) => {
       if (res.message) {
         this.setState({ errMsg: res.message });
+      } else {
+        setTimeout(
+          () =>
+            this.setState({
+              products: res,
+              // links: res.links,
+              loading: false,
+            }),
+          500
+        );
       }
-      setTimeout(
-        () =>
-          this.setState({
-            products: res.products,
-            links: res.links,
-            loading: false,
-          }),
-        500
-      );
     });
 
     // try {
@@ -98,7 +99,7 @@ class Home extends React.Component {
       }
       console.log(res);
       const data = await res.json();
-      this.setState({ products: data.products, links: data.links });
+      this.setState({ products: data, links: data.links });
     } catch (error) {
       console.log(error.message);
       this.setState({ errMsg: error.message });

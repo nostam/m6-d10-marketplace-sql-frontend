@@ -6,7 +6,6 @@ import {
   FaRegStar,
   FaThermometerHalf,
 } from "react-icons/fa";
-import AddReview from "../../components/AddReview";
 import ReviewModal from "../../components/ReviewModal";
 export default class ProductDetails extends Component {
   state = { product: {}, showModal: false, reviewId: "" };

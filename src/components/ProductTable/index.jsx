@@ -27,7 +27,7 @@ class ProductsTable extends Component {
 
   render() {
     return (
-      <Table responseive className="p-5" size="sm">
+      <Table responsive className="p-5" size="sm">
         <thead>
           <tr>
             <th>Product ID</th>

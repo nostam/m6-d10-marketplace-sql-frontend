@@ -75,7 +75,7 @@ class ModalForm extends Component {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
                   <Form.Label>Product Description</Form.Label>
                   <Form.Control
                     type="text"
@@ -85,7 +85,7 @@ class ModalForm extends Component {
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
                   <Form.Label>Product Brand</Form.Label>
                   <Form.Control
                     type="text"
@@ -95,7 +95,7 @@ class ModalForm extends Component {
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
                   <Form.Label>Product price</Form.Label>
                   <Form.Control
                     type="text"
@@ -105,7 +105,7 @@ class ModalForm extends Component {
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
                   <Form.Label>Product Image url</Form.Label>
                   <Form.Control
                     type="url"

@@ -22,8 +22,8 @@ export default class BackOffice extends Component {
       setTimeout(
         () =>
           this.setState({
-            products: res.products,
-            links: res.links,
+            products: res,
+            // links: res.links,
             loading: false,
           }),
         500
