@@ -14,6 +14,27 @@ class ModalForm extends Component {
       },
     });
   };
+  fileUploadHandler = async () => {
+    const url = this.props.productId
+      ? `${this.url}/products/${this.props.productId}`
+      : this.url;
+    const fd = new FormData();
+    fd.append("post", this.state.selectedFile);
+    try {
+      const response = await fetch(`${this.url}/`, {
+        method: "POST",
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        body: fd,
+      });
+      if (response.ok) {
+        this.setState({ showModal: false }, () => this.props.refetch());
+      } else {
+        this.setState({ showModal: false });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   updateProduct = async () => {
     const url = this.props.productId
@@ -42,6 +63,13 @@ class ModalForm extends Component {
   };
 
   render() {
+    const {
+      name,
+      description,
+      imageUrl,
+      brand,
+      price,
+    } = this.state.productDetails;
     return (
       <div>
         <>
@@ -68,20 +96,19 @@ class ModalForm extends Component {
                   <Form.Label>Product Name</Form.Label>
                   <Form.Control
                     type="text"
-                    value={this.state.productDetails.name}
+                    value={name}
                     placeholder="Enter name"
                     id="name"
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
-
                 <Form.Group>
                   <Form.Label>Product Description</Form.Label>
                   <Form.Control
                     type="text"
                     id="description"
                     placeholder="Enter Description"
-                    value={this.state.productDetails.description}
+                    value={description}
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
@@ -90,7 +117,7 @@ class ModalForm extends Component {
                   <Form.Control
                     type="text"
                     id="brand"
-                    value={this.state.productDetails.brand}
+                    value={brand}
                     placeholder="Enter Brand"
                     onChange={(e) => this.onChangeHandler(e)}
                   />
@@ -101,20 +128,29 @@ class ModalForm extends Component {
                     type="text"
                     placeholder="Enter price"
                     id="price"
-                    value={this.state.productDetails.price}
+                    value={price}
                     onChange={(e) => this.onChangeHandler(e)}
                   />
                 </Form.Group>
-                <Form.Group>
-                  <Form.Label>Product Image url</Form.Label>
-                  <Form.Control
-                    type="url"
-                    placeholder="Enter image url"
-                    id="imageUrl"
-                    value={this.state.productDetails.imageUrl}
-                    onChange={(e) => this.onChangeHandler(e)}
+                {imageUrl.length === 0 ? (
+                  <Form.Group>
+                    <Form.Label>Product Image url</Form.Label>
+                    <Form.Control
+                      type="url"
+                      placeholder="Enter image url"
+                      id="imageUrl"
+                      value={imageUrl}
+                      onChange={(e) => this.onChangeHandler(e)}
+                    />
+                  </Form.Group>
+                ) : (
+                  <Form.File
+                    id="custom-file"
+                    label={imageUrl}
+                    className="text-truncate"
+                    custom
                   />
-                </Form.Group>
+                )}
               </Form>
             </Modal.Body>
             <Modal.Footer className="row justify-content-between mx-1">

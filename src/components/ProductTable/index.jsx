@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Button, Table } from "react-bootstrap";
 import ModalForm from "../ModalForm";
-// const urls = [
-//   "https://striveschool-api.herokuapp.com/api/product/",
-//   "https://striveschool-api.herokuapp.com/api/product/",
-// ];
+import { Link } from "react-router-dom";
 
 class ProductsTable extends Component {
   url = process.env.REACT_APP_API_URL;
@@ -43,7 +40,9 @@ class ProductsTable extends Component {
           {this.props.products.map((product, index) => (
             <tr key={`product-table-${index}`}>
               <td>{product._id}</td>
-              <td>{product.name}</td>
+              <td>
+                <Link to={`/products/${product._id}`}>{product.name}</Link>
+              </td>
               <td>{product.description}</td>
               <td>{product.price}</td>
               <td>{product.brand}</td>
