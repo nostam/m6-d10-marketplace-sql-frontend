@@ -5,6 +5,9 @@ export default class ReviewModal extends Component {
   url = process.env.REACT_APP_API_URL + "/products";
   handleSubmitReview = async (option) => {
     const method = option === "DELETE" ? "DELETE" : this.props.method;
+    // assume userid=1
+    if (isNaN(this.state.review.userId))
+      this.setState({ review["userId"]: 1 } });
     try {
       let res = await fetch(
         `${this.url}/${this.props.product._id}/reviews${

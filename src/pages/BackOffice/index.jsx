@@ -22,8 +22,8 @@ export default class BackOffice extends Component {
       setTimeout(
         () =>
           this.setState({
-            products: res,
-            // links: res.links,
+            products: res.products,
+            links: res.links,
             loading: false,
           }),
         500
@@ -83,7 +83,7 @@ export default class BackOffice extends Component {
           <Container className="my-5">
             <ProductsTable
               products={products}
-              refetch={this.handleProducts}
+              refetch={() => this.handleProducts()}
               handleAlert={this.handleAlert}
             />
             {Object.keys(links) !== 0 && (

@@ -17,7 +17,7 @@ class Home extends React.Component {
     errMsg: "",
   };
   url = process.env.REACT_APP_API_URL;
-  cartID = "5f6b1991df85440017160811";
+  cartID = "1";
   // handleDropdownCategory = category => {
   //   this.setState({
   //     products: products[category].slice(0, 6),
@@ -33,8 +33,8 @@ class Home extends React.Component {
         setTimeout(
           () =>
             this.setState({
-              products: res,
-              // links: res.links,
+              products: res.products,
+              links: res.links,
               loading: false,
             }),
           500
@@ -84,8 +84,8 @@ class Home extends React.Component {
     // }
   };
   handlePagination = async (e) => {
-    // e.preventDefault();
     console.log(this.state.links);
+    console.log(this.state);
     const suffix = this.state.links[e.target.name];
     //TODO reuse
     try {
@@ -99,7 +99,7 @@ class Home extends React.Component {
       }
       console.log(res);
       const data = await res.json();
-      this.setState({ products: data, links: data.links });
+      this.setState({ products: data.products, links: data.links });
     } catch (error) {
       console.log(error.message);
       this.setState({ errMsg: error.message });

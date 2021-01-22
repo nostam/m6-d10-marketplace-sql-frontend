@@ -54,12 +54,12 @@ class ProductsTable extends Component {
                   product={product}
                   productId={product._id}
                   refetch={this.props.refetch}
-                  removeProduct={this.removeProduct}
+                  removeProduct={() => this.removeProduct(product._id)}
                   handleAlert={this.props.handleAlert}
                 />
                 <Button
                   variant="outline-danger"
-                  onClick={() => this.removeProduct()}
+                  onClick={() => this.removeProduct(product._id)}
                 >
                   Delete
                 </Button>
