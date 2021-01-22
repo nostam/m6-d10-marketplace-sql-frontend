@@ -7,7 +7,11 @@ export default class ReviewModal extends Component {
     const method = option === "DELETE" ? "DELETE" : this.props.method;
     // assume userid=1
     if (isNaN(this.state.review.userId))
-      this.setState({ review["userId"]: 1 } });
+      this.setState({ review: { ...this.state.review, userId: 1 } });
+    if (isNaN(this.state.review.productId))
+      this.setState({
+        review: { ...this.state.review, productId: this.props.product._id },
+      });
     try {
       let res = await fetch(
         `${this.url}/${this.props.product._id}/reviews${
